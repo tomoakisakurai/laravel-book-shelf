@@ -15,6 +15,10 @@ use Illuminate\Support\Facades\Validator;
 |
 */
 
+Route::get('/healthcheck', function () {
+    return view('welcome');
+});
+
 Route::get('/', function () {
     $books = Book::all();
     return view('books', ['books' => $books]);

@@ -29,6 +29,17 @@ Route::get('/', function () {
 
 Route::get('tests/test', 'TestController@index');
 
+// Route::get('contact/index', 'ContactFormController@index');
+
+// Route::resource('contants', 'ContactFormController')->only([
+//     'index', 'show'
+// ]);
+
+Route::group(['prefix' => 'contact', 'middleware' => 'auth'], function () {
+    Route::get('index', 'ContactFormController@index')->name('contact.index');
+    Route::get('create', 'ContactFormController@create')->name('contact.create');
+});
+
 Route::post('/book', function (Request $request) {
     $validator = Validator::make($request->all(), [
         'name' => 'required|max:255',
